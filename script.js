@@ -3,8 +3,8 @@
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
 
-function countriesData (data) {
-  const html = `<article class="country">
+function countriesData (data, className='') {
+  const html = `<article class="country ${className}" >
     <img class="country__img" src=${data.flags.png}/>
     <div class="country__data">
       <h3 class="country__name">${data.name.common}</h3>
@@ -41,8 +41,8 @@ if(!neighbour)return;
 
  request2.addEventListener('load', function(){
    console.log(this.responseText)
-   const [data] = JSON.parse(this.responseText)
-  countriesData(data)
+   const [data2] = JSON.parse(this.responseText)
+  countriesData(data2, 'neighbour')
 
 })
 })
