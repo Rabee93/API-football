@@ -23,23 +23,18 @@ function countriesData (data, className='') {
 const countriesAndNeighbor = function(string) {
  fetch(`https://restcountries.com/v3.1/name/${string}`)
 .then(response => response.json())
-.then(data=>countriesData(data[0]));
+
+.then(data=> {countriesData(data[0]);
 
 
-//  const neighbour = data.borders[0]
-// if(!neighbour)return;
-//
-//  const request2 = new XMLHttpRequest();
-//
-//  request2.open('GET',`https://restcountries.com/v3.1/alpha/${neighbour}`);
-//  request2.send();
-//
-//  request2.addEventListener('load', function(){
-//    console.log(this.responseText)
-//    const [data2] = JSON.parse(this.responseText)
-//   countriesData(data2, 'neighbour')
-//
-// })
+ const neighbour = data[0].borders[0]
+ if(!neighbour)return;
+
+return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`)
+})
+.then(response2 => response2.json())
+.then(data2 => countriesData(data2[0], 'neighbour'))
+
 
 }
 
